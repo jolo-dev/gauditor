@@ -1,0 +1,16 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@npm-audit/core/*": [
+        "../core/src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "coverage"
+  ]
+}

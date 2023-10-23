@@ -1,0 +1,7 @@
+{
+  "*.ts": [
+    "pnpm lint",
+    "pnpm format",
+    "git add README.md"
+  ]
+}

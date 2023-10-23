@@ -1,0 +1,21 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "exclude": [
+    "packages",
+    "node_modules",
+    "coverage",
+    "./bootstrap.js",
+    "./Stack.js"
+  ],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "paths": {
+      "@npm-audit/core/*": [
+        "./packages/core/src/*"
+      ],
+      "@npm-audit/functions/*": [
+        "./packages/functions/src/*"
+      ]
+    }
+  }
+}

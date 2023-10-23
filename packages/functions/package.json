@@ -1,0 +1,21 @@
+{
+  "name": "@npm-audit/functions",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "npx vitest --coverage --run",
+    "typecheck": "tsc -noEmit"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "@types/node": "^20.3.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-codebuild": "^3.433.0",
+    "@aws-sdk/client-codecommit": "^3.433.0",
+    "@aws-sdk/client-codepipeline": "^3.433.0",
+    "@aws-sdk/client-s3": "^3.433.0",
+    "@aws-sdk/client-sfn": "^3.433.0",
+    "@aws-sdk/client-sts": "^3.433.0"
+  }
+}
