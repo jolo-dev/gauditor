@@ -6,7 +6,19 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noShadowRestrictedNames": "off"
+			}
+		}
+	},
+	"files": {
+		"ignore": ["packages/**/*.js", "coverage"]
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"semicolons": "always"
 		}
 	}
 }

@@ -8,12 +8,10 @@
     "./Stack.js"
   ],
   "compilerOptions": {
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
     "paths": {
-      "@npm-audit/core/*": [
-        "./packages/core/src/*"
-      ],
-      "@npm-audit/functions/*": [
+      "@gauditor/functions/*": [
         "./packages/functions/src/*"
       ]
     }

@@ -1,13 +1,16 @@
 {
-  "search.exclude": {
-    "**/.sst": true
-  },
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "typescript.format.enable": false,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "eslint.enable": true,
-  "eslint.codeActionsOnSave.mode": "all",
+	"search.exclude": {
+		"**/.sst": true
+	},
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"quickfix.biome": true
+	},
+	"typescript.format.enable": false,
+	"eslint.enable": false,
+	"prettier.enable": false,
+	"editor.defaultFormatter": "biomejs.biome",
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
 }

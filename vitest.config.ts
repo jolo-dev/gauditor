@@ -1,14 +1,13 @@
-import { defineConfig } from "vitest/config";
-import path from "path";
+import path from 'path';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@npm-audit/core": path.resolve(__dirname, "./packages/core/src"),
-      "@npm-audit/functions": path.resolve(
-        __dirname,
-        "./packages/functions/src",
-      ),
-    },
-  },
+	resolve: {
+		alias: {
+			'@gauditor/functions': path.resolve(
+				__dirname,
+				'./packages/functions/src',
+			),
+		},
+	},
 });

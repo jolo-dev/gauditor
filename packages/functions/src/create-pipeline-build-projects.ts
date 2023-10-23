@@ -1,5 +1,5 @@
-import { IEvent } from '@npm-audit/core/types'
-import { createPipeline, stage } from '../lib/codepipeline'
+import { createPipeline, stage } from '../lib/codepipeline';
+import { IEvent } from '../lib/types';
 
 /**
  * The above function is an async handler that connects to CodeCommit, CodeBuild projects, and Step
@@ -10,44 +10,46 @@ import { createPipeline, stage } from '../lib/codepipeline'
  * "event.repositories" parameter.
  */
 export async function handler(event: IEvent) {
-  try {
-    console.log(event)
+	try {
+		console.log(event);
 
-    if (!Array.isArray(event.repositories)) {
-      throw new Error('Invalid input: repositories must be an array')
-    }
+		if (!Array.isArray(event.repositories)) {
+			throw new Error('Invalid input: repositories must be an array');
+		}
 
-    if (!event.repositories.every((repo) => typeof repo === 'string')) {
-      throw new Error('Invalid input: repositories must be an array of strings')
-    }
+		if (!event.repositories.every((repo) => typeof repo === 'string')) {
+			throw new Error(
+				'Invalid input: repositories must be an array of strings',
+			);
+		}
 
-    /* 1. Stage: Connect to Codecommit */
-    const sourceStages = await stage(event.repositories, 'Source')
-    /*******************************************/
+		/* 1. Stage: Connect to Codecommit */
+		const sourceStages = await stage(event.repositories, 'Source');
+		/*******************************************/
 
-    /* 2. Stage: Connect to CodeBuild Projects */
-    const codeBuildStages = await stage(event.repositories, 'Build')
-    /******************************************/
+		/* 2. Stage: Connect to CodeBuild Projects */
+		const codeBuildStages = await stage(event.repositories, 'Build');
+		/******************************************/
 
-    /* 3. Stage: Send Task Success to Step Functions */
-    const lambdaInvokeSuccessStage = await stage(event.repositories, 'Invoke', {
-      UserParameters: JSON.stringify(event.token)
-    })
-    /******************************************/
+		/* 3. Stage: Send Task Success to Step Functions */
+		const lambdaInvokeSuccessStage = await stage(event.repositories, 'Invoke', {
+			UserParameters: JSON.stringify(event.token),
+		});
+		/******************************************/
 
-    /*********** Create Pipeline **************/
-    await createPipeline('NPM-Audit-Pipeline', [
-      sourceStages,
-      codeBuildStages,
-      lambdaInvokeSuccessStage
-    ])
+		/*********** Create Pipeline **************/
+		await createPipeline('NPM-Audit-Pipeline', [
+			sourceStages,
+			codeBuildStages,
+			lambdaInvokeSuccessStage,
+		]);
 
-    // But for Step Functions we are passing the repositories further
-    return {
-      repositories: event.repositories
-    }
-  } catch (err) {
-    console.error(err)
-    throw err
-  }
+		// But for Step Functions we are passing the repositories further
+		return {
+			repositories: event.repositories,
+		};
+	} catch (err) {
+		console.error(err);
+		throw err;
+	}
 }
